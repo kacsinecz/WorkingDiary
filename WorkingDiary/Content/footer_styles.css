@@ -1,0 +1,10 @@
+﻿.footer {
+    position: absolute;
+    bottom: 0px;
+    margin-bottom: 0px;
+    width: 100%;
+}
+
+div p {
+    text-align: center;
+}

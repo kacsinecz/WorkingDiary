@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pracovný denník</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/header_styles.css")
+    @Styles.Render("~/Content/footer_styles.css")
+    
+    </head>
+    <body>
+
+        <div style="position:relative">
+            <div class="title">
+                Pracovný denník
+            </div>
+            <div class="titledetail">
+                @DateTime.Now.ToString("D", new System.Globalization.CultureInfo("sk-SK")) &nbsp;&nbsp;&nbsp;&nbsp;Prihlásený užívateľ:&nbsp;@ViewBag.Username
+            </div>
+            <div>
+                <ul id="menu">
+                    <li><a href="~/Diary/Index" id="diary">Denník</a></li>
+                    <li><a href="~/Statistics/Index" id="statistics">Štatistika</a></li>
+                    <li><a href="~/Settings/Index" id="settings">Nastavenia</a></li>
+                    <li><a href="~/Settings/Index" id="logout">Odhlásiť</a></li>
+                </ul>
+            </div>
+        </div>
+
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    <div class="footer">
+        <p>&copy; Tibor Kacsinecz - verzia beta 0.99</p>
+    </div>
+        
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/menu.js")
+    @RenderSection("scripts", required: false)
+    <script>
+        setActive('@(ViewBag.Viewname)');
+    </script>
+</body>
+</html>

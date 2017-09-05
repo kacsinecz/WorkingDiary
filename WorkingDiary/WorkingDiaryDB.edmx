@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="working_diaryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="diary">
+          <Key>
+            <PropertyRef Name="diary_id" />
+          </Key>
+          <Property Name="diary_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="users_id" Type="int" Nullable="false" />
+          <Property Name="diary_day" Type="datetime" Nullable="false" />
+          <Property Name="diary_order" Type="int" Nullable="false" />
+          <Property Name="project_id" Type="int" Nullable="false" />
+          <Property Name="diary_activity" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="diary_hours" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="project">
+          <Key>
+            <PropertyRef Name="project_id" />
+          </Key>
+          <Property Name="project_id" Type="int" Nullable="false" />
+          <Property Name="project_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="project_valid" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="settings">
+          <Key>
+            <PropertyRef Name="settings_id" />
+          </Key>
+          <Property Name="settings_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="settings_editable_from" Type="datetime" Nullable="false" />
+          <Property Name="settings_editable_to" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="users_id" />
+          </Key>
+          <Property Name="users_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="users_name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="users_password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="users_realname" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="users_email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="users_type" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="users_position" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="users_valid" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__diary__project_i__09DE7BCC">
+          <End Role="project" Type="Self.project" Multiplicity="1" />
+          <End Role="diary" Type="Self.diary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="project_id" />
+            </Principal>
+            <Dependent Role="diary">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__diary__users_id__08EA5793">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="diary" Type="Self.diary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="users_id" />
+            </Principal>
+            <Dependent Role="diary">
+              <PropertyRef Name="users_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="working_diaryModelStoreContainer">
+          <EntitySet Name="diary" EntityType="Self.diary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="project" EntityType="Self.project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="settings" EntityType="Self.settings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__diary__project_i__09DE7BCC" Association="Self.FK__diary__project_i__09DE7BCC">
+            <End Role="project" EntitySet="project" />
+            <End Role="diary" EntitySet="diary" />
+          </AssociationSet>
+          <AssociationSet Name="FK__diary__users_id__08EA5793" Association="Self.FK__diary__users_id__08EA5793">
+            <End Role="users" EntitySet="users" />
+            <End Role="diary" EntitySet="diary" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="working_diaryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="diary">
+          <Key>
+            <PropertyRef Name="diary_id" />
+          </Key>
+          <Property Name="diary_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="users_id" Type="Int32" Nullable="false" />
+          <Property Name="diary_day" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="diary_order" Type="Int32" Nullable="false" />
+          <Property Name="project_id" Type="Int32" Nullable="false" />
+          <Property Name="diary_activity" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="diary_hours" Type="Double" Nullable="false" />
+          <NavigationProperty Name="project" Relationship="Self.FK__diary__project_i__09DE7BCC" FromRole="diary" ToRole="project" />
+          <NavigationProperty Name="users" Relationship="Self.FK__diary__users_id__08EA5793" FromRole="diary" ToRole="users" />
+        </EntityType>
+        <EntityType Name="project">
+          <Key>
+            <PropertyRef Name="project_id" />
+          </Key>
+          <Property Name="project_id" Type="Int32" Nullable="false" />
+          <Property Name="project_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="project_valid" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="diary" Relationship="Self.FK__diary__project_i__09DE7BCC" FromRole="project" ToRole="diary" />
+        </EntityType>
+        <EntityType Name="settings">
+          <Key>
+            <PropertyRef Name="settings_id" />
+          </Key>
+          <Property Name="settings_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="settings_editable_from" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="settings_editable_to" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="users_id" />
+          </Key>
+          <Property Name="users_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="users_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="users_password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="users_realname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="users_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="users_type" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="users_position" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="users_valid" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="diary" Relationship="Self.FK__diary__users_id__08EA5793" FromRole="users" ToRole="diary" />
+        </EntityType>
+        <Association Name="FK__diary__project_i__09DE7BCC">
+          <End Role="project" Type="Self.project" Multiplicity="1" />
+          <End Role="diary" Type="Self.diary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="project_id" />
+            </Principal>
+            <Dependent Role="diary">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__diary__users_id__08EA5793">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="diary" Type="Self.diary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="users_id" />
+            </Principal>
+            <Dependent Role="diary">
+              <PropertyRef Name="users_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="working_diaryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="diary" EntityType="Self.diary" />
+          <EntitySet Name="project" EntityType="Self.project" />
+          <EntitySet Name="settings" EntityType="Self.settings" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <AssociationSet Name="FK__diary__project_i__09DE7BCC" Association="Self.FK__diary__project_i__09DE7BCC">
+            <End Role="project" EntitySet="project" />
+            <End Role="diary" EntitySet="diary" />
+          </AssociationSet>
+          <AssociationSet Name="FK__diary__users_id__08EA5793" Association="Self.FK__diary__users_id__08EA5793">
+            <End Role="users" EntitySet="users" />
+            <End Role="diary" EntitySet="diary" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="working_diaryModelStoreContainer" CdmEntityContainer="working_diaryEntities">
+          <EntitySetMapping Name="diary">
+            <EntityTypeMapping TypeName="working_diaryModel.diary">
+              <MappingFragment StoreEntitySet="diary">
+                <ScalarProperty Name="diary_id" ColumnName="diary_id" />
+                <ScalarProperty Name="users_id" ColumnName="users_id" />
+                <ScalarProperty Name="diary_day" ColumnName="diary_day" />
+                <ScalarProperty Name="diary_order" ColumnName="diary_order" />
+                <ScalarProperty Name="project_id" ColumnName="project_id" />
+                <ScalarProperty Name="diary_activity" ColumnName="diary_activity" />
+                <ScalarProperty Name="diary_hours" ColumnName="diary_hours" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="project">
+            <EntityTypeMapping TypeName="working_diaryModel.project">
+              <MappingFragment StoreEntitySet="project">
+                <ScalarProperty Name="project_id" ColumnName="project_id" />
+                <ScalarProperty Name="project_name" ColumnName="project_name" />
+                <ScalarProperty Name="project_valid" ColumnName="project_valid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="settings">
+            <EntityTypeMapping TypeName="working_diaryModel.settings">
+              <MappingFragment StoreEntitySet="settings">
+                <ScalarProperty Name="settings_id" ColumnName="settings_id" />
+                <ScalarProperty Name="settings_editable_from" ColumnName="settings_editable_from" />
+                <ScalarProperty Name="settings_editable_to" ColumnName="settings_editable_to" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="working_diaryModel.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="users_id" ColumnName="users_id" />
+                <ScalarProperty Name="users_name" ColumnName="users_name" />
+                <ScalarProperty Name="users_password" ColumnName="users_password" />
+                <ScalarProperty Name="users_realname" ColumnName="users_realname" />
+                <ScalarProperty Name="users_email" ColumnName="users_email" />
+                <ScalarProperty Name="users_type" ColumnName="users_type" />
+                <ScalarProperty Name="users_position" ColumnName="users_position" />
+                <ScalarProperty Name="users_valid" ColumnName="users_valid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
