@@ -8,6 +8,7 @@
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/header_styles.css")
     @Styles.Render("~/Content/footer_styles.css")
+    @Styles.Render("~/Content/diary.css")
     
     </head>
     <body>
@@ -39,9 +40,12 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/Scripts/menu.js")
+    @Scripts.Render("~/Scripts/diary.js")
     @RenderSection("scripts", required: false)
     <script>
         setActive('@(ViewBag.Viewname)');
+        initYearControl(@ViewBag.MinYear,@ViewBag.MaxYear);
+        initMonthControl(@ViewBag.ActualMonth);
     </script>
 </body>
 </html>

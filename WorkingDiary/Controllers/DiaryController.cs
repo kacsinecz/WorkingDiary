@@ -14,6 +14,9 @@ namespace WorkingDiary.Controllers
             var db = new working_diaryEntities();
             ViewBag.Username = (from us in db.users select us.users_realname).FirstOrDefault();
             ViewBag.Viewname = "diary";
+            ViewBag.MinYear = (from y in db.diary select y.diary_day).Min().Year;
+            ViewBag.MaxYear = DateTime.Now.Year;
+            ViewBag.ActualMonth = DateTime.Now.Month;
             return View();
         }
     }

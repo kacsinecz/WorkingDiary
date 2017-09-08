@@ -1,0 +1,57 @@
+﻿div {
+    margin: 5px;
+    position: relative;
+}
+
+div #ycontrol {
+    height: 50px;
+}
+
+div #mcontrol {
+        height: 50px;
+    }
+
+#yleft {
+    left: 10%;
+    cursor: pointer;
+    transform: translate(-50%, 0%);
+    z-index: 99;
+}
+
+#yright {
+    right: 10%;
+    cursor: pointer;
+    transform: translate(-50%, 0%);
+    z-index: 99;
+}
+
+#mleft {
+    left: 10%;
+    cursor: pointer;
+    transform: translate(-50%, 0%);
+    z-index: 99;
+}
+
+#mright {
+    right: 11%;
+    cursor: pointer;
+    transform: translate(-50%, 0%);
+    z-index: 99;
+}
+
+span {
+    position: absolute;
+    transition: left 0.5s, opacity 0.5s;
+    transition-timing-function: ease-in-out;
+    transform: translate(-50%, 0%);
+}
+
+.year {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.month {
+    font-size: 20px;
+    font-weight: bold;
+}
