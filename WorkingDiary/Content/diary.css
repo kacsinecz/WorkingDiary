@@ -1,5 +1,5 @@
-﻿div {
-    margin: 5px;
+﻿.maindiv {
+    margin: 10px;
     position: relative;
 }
 
@@ -33,7 +33,7 @@ div #mcontrol {
 }
 
 #mright {
-    right: 11%;
+    right: 10.5%;
     cursor: pointer;
     transform: translate(-50%, 0%);
     z-index: 99;
@@ -54,4 +54,77 @@ span {
 .month {
     font-size: 20px;
     font-weight: bold;
+}
+
+table {
+    border-collapse: collapse;
+    margin: auto;
+    width: 80%;
+    /*transition: opacity 3s;*/
+}
+
+/*  zamerom je, aby pri prepnuti roka, resp. mesiaca bola tabulka zmenena "jemne" 
+    bola vyskusana animacia, aby sa spustila na zaciatku funkcie updateDiaryTable v diary.js, ale nie je 
+    dobrym riesenim naraz spustit animaciu a zmenu obsahu v tabulke
+    lepsim riesenim by bolo asi:
+    - pouzit transition na opacity elementu DIV, v ktorom je tabulka
+    - pre tento element DIV zmenit opacity na 0
+    - chytit event transitionend https://developer.mozilla.org/en-US/docs/Web/Events/transitionend
+    - v eventhandleri odstranit existujucu tabulku, vytvorit novu, a opacity elementu DIV zmenit opat na 1
+*/
+
+.table_animation {
+    animation-name: changing_opacity;
+    animation-duration: 1s;
+}
+
+@keyframes changing_opacity {
+    0% {
+        opacity: 1;
+    }
+    
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+table, th, td {
+    border: 1px solid black;
+    padding-left: 5px;
+}
+
+/*tr:nth-child(even) {
+    background-color: #f2f2f2
+} 
+*/
+
+td:first-child {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    padding-left: 0px;
+}
+
+.dov {
+    background-color:lightgreen;
+}
+
+.sluz {
+    background-color:lightblue;
+}
+
+.pn {
+    background-color: lightyellow;
+}
+
+.nepl {
+    background-color: tomato;
+}
+
+.oddrow {
+    background-color: #f2f2f2;
 }
