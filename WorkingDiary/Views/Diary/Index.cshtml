@@ -1,4 +1,12 @@
-﻿<div id="ycontrol">
+﻿@section Scripts {
+    <script>
+        initArrows();
+        initYearControl(@ViewBag.MinYear,@ViewBag.MaxYear);
+        initMonthControl(@ViewBag.ActualMonth);
+        getDiaryData();
+    </script>
+}
+<div id="ycontrol">
     <span id="yleft" class="year">&#8810;</span>
     <span id="yright" class="year">&#8811;</span>
 </div>

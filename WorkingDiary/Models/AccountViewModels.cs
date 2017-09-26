@@ -55,11 +55,9 @@ namespace WorkingDiary.Models
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Heslo")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
-        public bool RememberMe { get; set; }
     }
 
     public class RegisterViewModel
@@ -79,6 +77,14 @@ namespace WorkingDiary.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "Meno užívateľa")]
+        [StringLength(100, ErrorMessage = "Meno môže mať maximálne 100 znakov.")]
+        public string Realname { get; set; }
+
+        [Display(Name = "Pracovná pozícia užívateľa")]
+        [StringLength(50, ErrorMessage = "Pracovná pozícia môže mať maximálne 50 znakov.")]
+        public string Position { get; set; }
     }
 
     public class ResetPasswordViewModel

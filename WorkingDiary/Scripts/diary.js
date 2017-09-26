@@ -84,105 +84,108 @@ function initMonthControl(actualmonth) {
     
 }
 
-document.getElementById("yleft").addEventListener("click", function () {
-    if (activeYear !== maxYear) {
-        var new_act_span = document.getElementById((activeYear + 1).toString());
-        new_act_span.style.left = "50%";
-        new_act_span.style.opacity = 1;
-        var old_act_span = document.getElementById((activeYear).toString());
-        old_act_span.style.left = "25%";
-        old_act_span.style.opacity = middleOpacity;
-        if (activeYear !== minYear) {
-            var last_vis_span = document.getElementById((activeYear - 1).toString());
-            last_vis_span.style.left = "12%";
-            last_vis_span.style.opacity = 0;
-        }
-        if (activeYear + 2 <= maxYear) {
-            var first_vis_span = document.getElementById((activeYear + 2).toString());
-            first_vis_span.style.left = "75%";
-            first_vis_span.style.opacity = middleOpacity;
-        }
+function initArrows() {
 
-        activeYear = activeYear + 1;
-
-        getDiaryData();
-    }
-});
-
-document.getElementById("yright").addEventListener("click", function () {
-    if (activeYear !== minYear) {
-        var new_act_span = document.getElementById((activeYear - 1).toString());
-        new_act_span.style.left = "50%";
-        new_act_span.style.opacity = 1;
-        var old_act_span = document.getElementById((activeYear).toString());
-        old_act_span.style.left = "75%";
-        old_act_span.style.opacity = middleOpacity;
+    document.getElementById("yleft").addEventListener("click", function () {
         if (activeYear !== maxYear) {
-            var last_vis_span = document.getElementById((activeYear + 1).toString());
-            last_vis_span.style.left = "88%";
-            last_vis_span.style.opacity = 0;
-        }
-        if (activeYear - 2 >= minYear) {
-            var first_vis_span = document.getElementById((activeYear - 2).toString());
-            first_vis_span.style.left = "25%";
-            first_vis_span.style.opacity = middleOpacity;
-        }
-        
-        activeYear = activeYear - 1;
+            var new_act_span = document.getElementById((activeYear + 1).toString());
+            new_act_span.style.left = "50%";
+            new_act_span.style.opacity = 1;
+            var old_act_span = document.getElementById((activeYear).toString());
+            old_act_span.style.left = "25%";
+            old_act_span.style.opacity = middleOpacity;
+            if (activeYear !== minYear) {
+                var last_vis_span = document.getElementById((activeYear - 1).toString());
+                last_vis_span.style.left = "12%";
+                last_vis_span.style.opacity = 0;
+            }
+            if (activeYear + 2 <= maxYear) {
+                var first_vis_span = document.getElementById((activeYear + 2).toString());
+                first_vis_span.style.left = "75%";
+                first_vis_span.style.opacity = middleOpacity;
+            }
 
-        getDiaryData();
-    }
-});
+            activeYear = activeYear + 1;
 
-document.getElementById("mleft").addEventListener("click", function () {
-    if (!((activeMonth === 11) || (activeMonth === actualMonth && activeYear === maxYear))) {
-        var new_act_span = document.getElementById((activeMonth + 1).toString());
-        new_act_span.style.left = "50%";
-        new_act_span.style.opacity = 1;
-        var old_act_span = document.getElementById((activeMonth).toString());
-        old_act_span.style.left = "25%";
-        old_act_span.style.opacity = middleOpacity;
+            getDiaryData();
+        }
+    });
+
+    document.getElementById("yright").addEventListener("click", function () {
+        if (activeYear !== minYear) {
+            var new_act_span = document.getElementById((activeYear - 1).toString());
+            new_act_span.style.left = "50%";
+            new_act_span.style.opacity = 1;
+            var old_act_span = document.getElementById((activeYear).toString());
+            old_act_span.style.left = "75%";
+            old_act_span.style.opacity = middleOpacity;
+            if (activeYear !== maxYear) {
+                var last_vis_span = document.getElementById((activeYear + 1).toString());
+                last_vis_span.style.left = "88%";
+                last_vis_span.style.opacity = 0;
+            }
+            if (activeYear - 2 >= minYear) {
+                var first_vis_span = document.getElementById((activeYear - 2).toString());
+                first_vis_span.style.left = "25%";
+                first_vis_span.style.opacity = middleOpacity;
+            }
+
+            activeYear = activeYear - 1;
+
+            getDiaryData();
+        }
+    });
+
+    document.getElementById("mleft").addEventListener("click", function () {
+        if (!((activeMonth === 11) || (activeMonth === actualMonth && activeYear === maxYear))) {
+            var new_act_span = document.getElementById((activeMonth + 1).toString());
+            new_act_span.style.left = "50%";
+            new_act_span.style.opacity = 1;
+            var old_act_span = document.getElementById((activeMonth).toString());
+            old_act_span.style.left = "25%";
+            old_act_span.style.opacity = middleOpacity;
+            if (activeMonth !== 0) {
+                var last_vis_span = document.getElementById((activeMonth - 1).toString());
+                last_vis_span.style.left = "12%";
+                last_vis_span.style.opacity = 0;
+            }
+            if (activeMonth + 2 <= 11) {
+                var first_vis_span = document.getElementById((activeMonth + 2).toString());
+                first_vis_span.style.left = "75%";
+                first_vis_span.style.opacity = middleOpacity;
+            }
+
+            activeMonth = activeMonth + 1;
+
+            getDiaryData();
+        }
+    });
+
+    document.getElementById("mright").addEventListener("click", function () {
         if (activeMonth !== 0) {
-            var last_vis_span = document.getElementById((activeMonth - 1).toString());
-            last_vis_span.style.left = "12%";
-            last_vis_span.style.opacity = 0;
+            var new_act_span = document.getElementById((activeMonth - 1).toString());
+            new_act_span.style.left = "50%";
+            new_act_span.style.opacity = 1;
+            var old_act_span = document.getElementById((activeMonth).toString());
+            old_act_span.style.left = "75%";
+            old_act_span.style.opacity = middleOpacity;
+            if (activeMonth !== 11) {
+                var last_vis_span = document.getElementById((activeMonth + 1).toString());
+                last_vis_span.style.left = "85%";
+                last_vis_span.style.opacity = 0;
+            }
+            if (activeMonth - 2 >= 0) {
+                var first_vis_span = document.getElementById((activeMonth - 2).toString());
+                first_vis_span.style.left = "25%";
+                first_vis_span.style.opacity = middleOpacity;
+            }
+
+            activeMonth = activeMonth - 1;
+
+            getDiaryData();
         }
-        if (activeMonth + 2 <= 11) {
-            var first_vis_span = document.getElementById((activeMonth + 2).toString());
-            first_vis_span.style.left = "75%";
-            first_vis_span.style.opacity = middleOpacity;
-        }
-
-        activeMonth = activeMonth + 1;
-
-        getDiaryData();
-    }
-});
-
-document.getElementById("mright").addEventListener("click", function () {
-    if (activeMonth !== 0) {
-        var new_act_span = document.getElementById((activeMonth - 1).toString());
-        new_act_span.style.left = "50%";
-        new_act_span.style.opacity = 1;
-        var old_act_span = document.getElementById((activeMonth).toString());
-        old_act_span.style.left = "75%";
-        old_act_span.style.opacity = middleOpacity;
-        if (activeMonth !== 11) {
-            var last_vis_span = document.getElementById((activeMonth + 1).toString());
-            last_vis_span.style.left = "85%";
-            last_vis_span.style.opacity = 0;
-        }
-        if (activeMonth - 2 >= 0) {
-            var first_vis_span = document.getElementById((activeMonth - 2).toString());
-            first_vis_span.style.left = "25%";
-            first_vis_span.style.opacity = middleOpacity;
-        }
-
-        activeMonth = activeMonth - 1;
-
-        getDiaryData();
-    }
-});
+    });
+}
 
 function updateDiaryTable(response) {
 

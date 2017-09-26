@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.Owin;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -35,11 +36,11 @@ namespace WorkingDiary.Controllers
             
         }
 
-        // GET: Diary
+        [Authorize(Roles = "Administrator,Standard")]
         public ActionResult Index()
         {
             var db = new working_diaryEntities();
-            ViewBag.Username = (from us in db.users select us.users_realname).FirstOrDefault();
+            ViewBag.Username = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByNameAsync(User.Identity.Name).Result.Realname;
             ViewBag.Viewname = "diary";
             ViewBag.MinYear = (from y in db.diary select y.diary_day).Min().Year;
             ViewBag.MaxYear = DateTime.Now.Year;
@@ -47,6 +48,7 @@ namespace WorkingDiary.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Administrator,Standard")]
         public ActionResult GetDiaryData(int year,int month)
         {
             DateTime next_date,day;

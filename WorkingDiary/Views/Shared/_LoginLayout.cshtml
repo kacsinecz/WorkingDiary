@@ -17,17 +17,6 @@
             <div class="title">
                 Pracovný denník
             </div>
-            <div class="titledetail">
-                @DateTime.Now.ToString("D", new System.Globalization.CultureInfo("sk-SK")) &nbsp;&nbsp;&nbsp;&nbsp;Prihlásený užívateľ:&nbsp;@ViewBag.Username
-            </div>
-            <div>
-                <ul id="menu">
-                    <li><a href="~/Diary/Index" id="diary">Denník</a></li>
-                    <li><a href="~/Statistics/Index" id="statistics">Štatistika</a></li>
-                    <li><a href="~/Settings/Index" id="settings">Nastavenia</a></li>
-                    <li><a href="" id="logout">Odhlásiť</a></li>
-                </ul>
-            </div>
         </div>
 
     <div class="container body-content">
@@ -39,8 +28,6 @@
         
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/Scripts/menu.js")
-    @Scripts.Render("~/Scripts/diary.js")
     @RenderSection("scripts", required: false)
 </body>
 </html>

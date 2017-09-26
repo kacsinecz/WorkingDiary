@@ -16,12 +16,15 @@ namespace WorkingDiary.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public string Realname { get; set; }
+        public string Position { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("working_diaryDB", throwIfV1Schema: false)
         {
         }
 
