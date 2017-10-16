@@ -12,16 +12,12 @@ namespace WorkingDiary
     using System;
     using System.Collections.Generic;
     
-    public partial class diary
+    public partial class AspNetUserLogins
     {
-        public int diary_id { get; set; }
-        public System.DateTime diary_day { get; set; }
-        public int diary_order { get; set; }
-        public int project_id { get; set; }
-        public string diary_activity { get; set; }
-        public double diary_hours { get; set; }
-        public string AspNetUsers_Id { get; set; }
+        public string LoginProvider { get; set; }
+        public string ProviderKey { get; set; }
+        public string UserId { get; set; }
     
-        public virtual project project { get; set; }
+        public virtual AspNetUsers AspNetUsers { get; set; }
     }
 }

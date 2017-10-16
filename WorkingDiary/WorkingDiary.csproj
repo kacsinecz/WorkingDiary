@@ -190,12 +190,27 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="AspNetRoles.cs">
+      <DependentUpon>WorkingDiaryDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaims.cs">
+      <DependentUpon>WorkingDiaryDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogins.cs">
+      <DependentUpon>WorkingDiaryDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUsers.cs">
+      <DependentUpon>WorkingDiaryDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DiaryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\StatisticsController.cs" />
+    <Compile Include="C__MigrationHistory.cs">
+      <DependentUpon>WorkingDiaryDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="diary.cs">
       <DependentUpon>WorkingDiaryDB.tt</DependentUpon>
     </Compile>
@@ -203,6 +218,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Diary.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="project.cs">
@@ -213,9 +229,6 @@
       <DependentUpon>WorkingDiaryDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="users.cs">
-      <DependentUpon>WorkingDiaryDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="WorkingDiaryDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -238,10 +251,15 @@
     <Content Include="Content\diary.css" />
     <Content Include="Content\footer_styles.css" />
     <Content Include="Content\header_styles.css" />
+    <Content Include="Data-Add-Row-icon.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\Data-Add-Row-icon.png" />
+    <Content Include="images\Data-Delete-Row-icon.png" />
+    <Content Include="images\edit-icon.png" />
+    <Content Include="images\Programming-Save-icon.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -315,6 +333,7 @@
     <Content Include="Views\Statistics\Index.cshtml" />
     <Content Include="Views\Settings\Index.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
+    <Content Include="Views\Diary\DiaryData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

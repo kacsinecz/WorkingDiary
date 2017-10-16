@@ -12,16 +12,11 @@ namespace WorkingDiary
     using System;
     using System.Collections.Generic;
     
-    public partial class diary
+    public partial class C__MigrationHistory
     {
-        public int diary_id { get; set; }
-        public System.DateTime diary_day { get; set; }
-        public int diary_order { get; set; }
-        public int project_id { get; set; }
-        public string diary_activity { get; set; }
-        public double diary_hours { get; set; }
-        public string AspNetUsers_Id { get; set; }
-    
-        public virtual project project { get; set; }
+        public string MigrationId { get; set; }
+        public string ContextKey { get; set; }
+        public byte[] Model { get; set; }
+        public string ProductVersion { get; set; }
     }
 }

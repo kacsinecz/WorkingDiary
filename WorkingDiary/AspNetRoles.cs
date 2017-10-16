@@ -12,24 +12,18 @@ namespace WorkingDiary
     using System;
     using System.Collections.Generic;
     
-    public partial class users
+    public partial class AspNetRoles
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public users()
+        public AspNetRoles()
         {
-            this.diary = new HashSet<diary>();
+            this.AspNetUsers = new HashSet<AspNetUsers>();
         }
     
-        public int users_id { get; set; }
-        public string users_name { get; set; }
-        public string users_password { get; set; }
-        public string users_realname { get; set; }
-        public string users_email { get; set; }
-        public string users_type { get; set; }
-        public string users_position { get; set; }
-        public bool users_valid { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<diary> diary { get; set; }
+        public virtual ICollection<AspNetUsers> AspNetUsers { get; set; }
     }
 }

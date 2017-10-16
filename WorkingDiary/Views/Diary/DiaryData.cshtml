@@ -1,0 +1,117 @@
+﻿@using WorkingDiary.Models
+
+<div class="dropdown" style="display:none" id="dropdown_template" >
+    <button class="dropbtn" onmouseover="setActiveBtn()">Zadajte projekt...</button>
+    <div class="dropdown-content" >
+    @foreach (var pr in ViewBag.activeProjects)
+    {
+        <div onclick="changeDropdownBtn()" id="@pr.project_id" >@pr.project_name</div>
+    }
+    </div>
+</div>
+
+<table>
+    <tr>
+        <th style="width:12%">Deň</th>
+        <th style="width:20%">Projekt</th>
+        <th style="width:46%">Popis</th>
+        <th style="width:7%">Hodiny</th>
+        <th style="width:15%">Editácia</th>
+    </tr>
+    
+    @{
+        string class_name = string.Empty;
+        string td1_color;
+        string newrowid;
+        int row = 0;
+
+    }
+
+    
+    @foreach (Day d in ViewBag.diaryMonth)
+    {
+        switch (d.projectId.FirstOrDefault())
+        {
+            case 1001:
+                class_name = "dov";
+                break;
+            case 1002:
+                class_name = "sluz";
+                break;
+            case 1003:
+                class_name = "pn";
+                break;
+            case 1004:
+                class_name = "nepl";
+                break;
+            default:
+                if (row % 2 != 0)
+                {
+                    class_name = "oddrow";
+                }
+                else
+                {
+                    class_name = string.Empty;
+                }
+                break;
+        }
+        if(d.holiday)
+        {
+            td1_color = "red";
+        }
+        else
+        {
+            td1_color = "black";
+        }
+        newrowid = "newrow" + d.day;
+        row++;
+
+        <tr class="@class_name">
+            <td style="color:@td1_color">
+                <div style="height:45px">
+                    <div class="left_td_div">
+                        <div>@d.day</div>
+                        <div style="font-size:12px">@d.nameOfDay</div>
+                    </div>
+                    <div class="right_td_div">
+                        <img src="~/images/Data-Add-Row-icon.png" alt="Nový riadok" class="newrowicon" id="@newrowid" />
+                    </div>
+                </div>
+            </td>
+            <td id="@("td2" + d.day.ToString())">
+                @foreach(string p in d.projectName)
+                {
+                    <div>@p</div>
+                }
+            </td>
+            <td id="@("td3" + d.day.ToString())">
+                @foreach (string a in d.activity)
+                {
+                    <div>@a</div>
+                }
+            </td>
+            <td id="@("td4" + d.day.ToString())">
+                @foreach (double h in d.hours)
+                {
+                    <div>@h.ToString("0.00")</div>
+                }
+            </td>
+            <td id="@("td5" + d.day.ToString())"></td>
+        </tr>
+
+    }
+    
+</table>
+<script>
+    var imgs = document.body.getElementsByTagName("img");
+    var i;
+    for (i = 0; i < imgs.length; i++) {
+        imgs[i].addEventListener("click", addNewRow);
+    }
+
+    var id_in_days = [];
+    for (i = 0; i < 31; i++) {
+        id_in_days[i] = 1;
+    }
+
+</script>

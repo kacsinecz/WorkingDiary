@@ -25,9 +25,13 @@ namespace WorkingDiary
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<diary> diary { get; set; }
         public virtual DbSet<project> project { get; set; }
         public virtual DbSet<settings> settings { get; set; }
-        public virtual DbSet<users> users { get; set; }
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<diary> diary { get; set; }
     }
 }
